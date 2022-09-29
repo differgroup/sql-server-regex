@@ -19,7 +19,7 @@ set @StartTime = getdate();
   SELECT TOP (1000) [object_id], name from sys.all_objects
 )
 SELECT n = ROW_NUMBER() OVER (ORDER BY x.[object_id])
-    ,MatchedName = dbo.RegexReplace(x.name + y.name,'(\w{5})(\w{2})','$2__$1')
+    ,MatchedName = dbo.RegexReplace(x.name + y.name, '(\w{5})(\w{2})', '$2__$1', default)
 into #results
 FROM x CROSS JOIN x AS y ORDER BY n;
 
@@ -48,7 +48,7 @@ set @StartTime = getdate();
   SELECT TOP (1000) [object_id], name from sys.all_objects
 )
 SELECT n = ROW_NUMBER() OVER (ORDER BY x.[object_id])
-    ,MatchedName = dbo.RegexReplace(x.name + y.name,'(\w{5})(\w{2})(\S+)','$2__$1__$3')
+    ,MatchedName = dbo.RegexReplace(x.name + y.name, '(\w{5})(\w{2})(\S+)', '$2__$1__$3', default)
 into #results
 FROM x CROSS JOIN x AS y ORDER BY n;
 
@@ -71,7 +71,7 @@ SELECT n = ROW_NUMBER() OVER (ORDER BY x.[object_id])
     --,x.name
     --,y.name
 	,OriginalName = x.name + y.name
-    ,MatchedName = dbo.RegexReplace(x.name + y.name,'(\w{5})(\w+)','$2__$1')
+    ,MatchedName = dbo.RegexReplace(x.name + y.name, '(\w{5})(\w+)', '$2__$1', default)
 
 FROM x CROSS JOIN x AS y ORDER BY n;
 */

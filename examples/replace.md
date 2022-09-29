@@ -15,5 +15,5 @@ Let's look at a few examples, inspired by another handy [Regular Expressions tut
 ### Change a sentence
 
 ```
-select dbo.RegexReplace('Hello, my name is John Doe', 'my name is (.+)', 'my name is not $1')
+select dbo.RegexReplace('Hello, my name is John Doe', 'my name is (.+)', 'my name is not $1', default)
 ```

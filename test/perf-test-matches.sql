@@ -28,7 +28,7 @@ SELECT
     ,SplitCount = count(*)
 into #results
 FROM gen g
-CROSS APPLY dbo.RegexMatches(g.InputString, '\w{10}') as s --count all 4-character word sequences
+CROSS APPLY dbo.RegexMatches(g.InputString, '\w{10}', default) as s --count all 4-character word sequences
 GROUP BY g.n
 
 set @EndTime = getdate();
@@ -66,7 +66,7 @@ SELECT
     ,SplitCount = count(*)
 into #results
 FROM gen g
-CROSS APPLY dbo.RegexMatches(g.InputString, 's\w{4,6}') as s --the letter 's' followed by 4-6 letters
+CROSS APPLY dbo.RegexMatches(g.InputString, 's\w{4,6}', default) as s --the letter 's' followed by 4-6 letters
 GROUP BY g.n
 
 set @EndTime = getdate();
@@ -85,7 +85,7 @@ go 10
 SELECT n = ROW_NUMBER() OVER (ORDER BY x.[object_id])
     --,x.name
     --,y.name
-    ,MatchedName = dbo.RegexMatch(x.name + y.name,'\w{4}')
+    ,MatchedName = dbo.RegexMatch(x.name + y.name, '\w{4}', default)
 
 FROM x CROSS JOIN x AS y ORDER BY n;
 */

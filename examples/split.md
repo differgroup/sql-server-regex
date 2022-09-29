@@ -20,8 +20,8 @@ Let's split a string into words
 declare @regex_pattern varchar(max) = '\s+'
 
 select *
-from dbo.RegexSplit('How do I split an arbitrary string into words?', @regex_pattern)
+from dbo.RegexSplit('How do I split an arbitrary string into words?', @regex_pattern, default)
 
 select *
-from dbo.RegexSplit('Does this work if   the words are oddly-formed?', @regex_pattern)
+from dbo.RegexSplit('Does this work if   the words are oddly-formed?', @regex_pattern, default)
 ```

@@ -21,6 +21,7 @@
     <NoStandardLibraries>false</NoStandardLibraries>
     <AssemblyName>sql-server-regex</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <LangVersion>9.0</LangVersion>
     <ConnectionString>
     </ConnectionString>
     <TargetFrameworkProfile />

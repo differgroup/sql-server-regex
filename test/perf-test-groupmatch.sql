@@ -17,7 +17,7 @@ set @StartTime = getdate();
   SELECT TOP (1000) [object_id], name from sys.all_objects
 )
 SELECT n = ROW_NUMBER() OVER (ORDER BY x.[object_id])
-    ,MatchedName = dbo.RegexGroupMatch(x.name + y.name,'(?<firstfour>\w{4})','firstfour')
+    ,MatchedName = dbo.RegexGroupMatch(x.name + y.name, '(?<firstfour>\w{4})', 'firstfour', default)
 into #results
 FROM x CROSS JOIN x AS y ORDER BY n;
 
@@ -46,7 +46,7 @@ set @StartTime = getdate();
   SELECT TOP (1000) [object_id], name from sys.all_objects
 )
 SELECT n = ROW_NUMBER() OVER (ORDER BY x.[object_id])
-    ,MatchedName = dbo.RegexGroupMatch(x.name + y.name,'(?<firstsix>(\w{4}\w?\w{1}))\S+','firstsix')
+    ,MatchedName = dbo.RegexGroupMatch(x.name + y.name,'(?<firstsix>(\w{4}\w?\w{1}))\S+', 'firstsix', default)
 into #results
 FROM x CROSS JOIN x AS y ORDER BY n;
 
@@ -68,7 +68,7 @@ go 10
 SELECT n = ROW_NUMBER() OVER (ORDER BY x.[object_id])
     --,x.name
     --,y.name
-    ,MatchedName = dbo.RegexGroupMatch(x.name + y.name,'(?<firstfour>(\w{4}\w?\w{1}))\S+','firstfour')
+    ,MatchedName = dbo.RegexGroupMatch(x.name + y.name,'(?<firstfour>(\w{4}\w?\w{1}))\S+', 'firstfour', default)
 
 FROM x CROSS JOIN x AS y ORDER BY n;
 */
