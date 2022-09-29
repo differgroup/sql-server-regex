@@ -11,7 +11,7 @@ See unit-tests.md for a list of expected behaviors
 (
   select Position
 	    ,Match
-  from dbo.RegexSplit('Split', '\s+', default)
+  from dbo.RegexSplit('Split', '\s+')
 )
 
 select StatusMessage = case when Match in ('Split','once') then 'Success' else 'Failure' end
@@ -25,7 +25,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexSplit('Can this split into multiple words?', '\s+', default)
+  from dbo.RegexSplit('Can this split into multiple words?', '\s+')
 )
 
 select StatusMessage = case when Match in ('Can','this','split','into','multiple','words?') then 'Success' else 'Failure' end
@@ -39,7 +39,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexSplit('Split words', 'ddd', default)
+  from dbo.RegexSplit('Split words', 'ddd')
 )
 
 select StatusMessage = case when Match = 'Split words' then 'Success' else 'Failure' end
@@ -55,7 +55,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexSplit(null, '\s+', default)
+  from dbo.RegexSplit(null, '\s+')
 )
 
 select StatusMessage = case when count(*) = 0 then 'Success' else 'Failure' end
@@ -74,7 +74,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexSplit('Split all the words!', null, default)
+  from dbo.RegexSplit('Split all the words!', null)
 )
 
 select StatusMessage = case when count(*) = 0 then 'Success' else 'Failure' end
@@ -88,7 +88,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexSplit(null, null, default)
+  from dbo.RegexSplit(null, null)
 )
 
 select StatusMessage = case when count(*) = 0 then 'Success' else 'Failure' end
@@ -102,7 +102,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexSplit('Split lots of words!', '$^', default)
+  from dbo.RegexSplit('Split lots of words!', '$^')
 )
 
 select StatusMessage = case when Match = 'Split lots of words!' then 'Success' else 'Failure' end
@@ -117,7 +117,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexSplit(cast('7A9A986F-AD7B-4BB2-93B4-351A422B89A8' as uniqueidentifier), '-', default)
+  from dbo.RegexSplit(cast('7A9A986F-AD7B-4BB2-93B4-351A422B89A8' as uniqueidentifier), '-')
 )
 
 select StatusMessage = case when Match in ('7A9A986F','AD7B','4BB2','93B4','351A422B89A8') then 'Success' else 'Failure' end

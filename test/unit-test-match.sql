@@ -9,7 +9,7 @@ See unit-tests.md for a list of expected behaviors
 -- UNIT TEST: Match one entry
 ; with test as 
 (
-  select dbo.RegexMatch('testme   space', '\w+', default) as TestResult
+  select dbo.RegexMatch('testme   space','\w+') as TestResult
 )
 
 select StatusMessage = case when TestResult = 'testme' then 'Success' else 'Failure' end
@@ -21,7 +21,7 @@ go
 -- UNIT TEST: Match no entries
 ; with test as 
 (
-  select dbo.RegexMatch('testme   space', 'ddd', default) as TestResult
+  select dbo.RegexMatch('testme   space','ddd') as TestResult
 )
 
 select StatusMessage = case when TestResult is null then 'Success' else 'Failure' end
@@ -33,7 +33,7 @@ go
 -- UNIT TEST: Match multiple entries
 ; with test as 
 (
-  select dbo.RegexMatch('testme   space', '\w', default) as TestResult
+  select dbo.RegexMatch('testme   space','\w') as TestResult
 )
 
 select StatusMessage = case when TestResult = 't' then 'Success' else 'Failure' end
@@ -45,7 +45,7 @@ go
 -- UNIT TEST: Null string input
 ; with test as 
 (
-  select dbo.RegexMatch(null, '\w', default) as TestResult
+  select dbo.RegexMatch(null,'\w') as TestResult
 )
 
 select StatusMessage = case when TestResult is null then 'Success' else 'Failure' end
@@ -57,7 +57,7 @@ go
 -- UNIT TEST: Null pattern input
 ; with test as 
 (
-  select dbo.RegexMatch('testme   space', null, default) as TestResult
+  select dbo.RegexMatch('testme   space',null) as TestResult
 )
 
 select StatusMessage = case when TestResult is null then 'Success' else 'Failure' end
@@ -69,7 +69,7 @@ go
 -- UNIT TEST: Both inputs are null
 ; with test as 
 (
-  select dbo.RegexMatch(null, null, default) as TestResult
+  select dbo.RegexMatch(null,null) as TestResult
 )
 
 select StatusMessage = case when TestResult is null then 'Success' else 'Failure' end
@@ -81,7 +81,7 @@ go
 -- UNIT TEST: Illegal regular expression
 ; with test as 
 (
-  select dbo.RegexMatch('testme   space', '$^', default) as TestResult
+  select dbo.RegexMatch('testme   space','$^') as TestResult
 )
 
 select StatusMessage = case when TestResult is null then 'Success' else 'Failure' end
@@ -93,7 +93,7 @@ go
 -- UNIT TEST: Wrong input types (numbers, guids, etc)
 ; with test as 
 (
-  select dbo.RegexMatch(1334873, '\d{3}', default) as TestResult
+  select dbo.RegexMatch(1334873,'\d{3}') as TestResult
 )
 
 select StatusMessage = case when TestResult = '133' then 'Success' else 'Failure' end

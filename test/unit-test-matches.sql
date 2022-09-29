@@ -11,7 +11,7 @@ See unit-tests.md for a list of expected behaviors
 (
   select Position
 	    ,Match = replace(replace(Match, '<TAG>',''),'</TAG>','')
-  from dbo.RegexMatches('The HTML is <TAG>one</TAG>', '<([A-Z][A-Z0-9]*)\b[^>]*>(.*?)</\1>', default)
+  from dbo.RegexMatches('The HTML is <TAG>one</TAG>', '<([A-Z][A-Z0-9]*)\b[^>]*>(.*?)</\1>')
 )
 
 select StatusMessage = case when Match in ('one') then 'Success' else 'Failure' end
@@ -25,7 +25,7 @@ go
 (
   select Position
 	    ,Match = replace(replace(Match, '<TAG>',''),'</TAG>','')
-  from dbo.RegexMatches('The HTML is <TAG>one</TAG><TAG>two</TAG>', '<([A-Z][A-Z0-9]*)\b[^>]*>(.*?)</\1>', default)
+  from dbo.RegexMatches('The HTML is <TAG>one</TAG><TAG>two</TAG>', '<([A-Z][A-Z0-9]*)\b[^>]*>(.*?)</\1>')
 )
 
 select StatusMessage = case when Match in ('one','two') then 'Success' else 'Failure' end
@@ -39,7 +39,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexMatches('The HTML is one two ', '<([A-Z][A-Z0-9]*)\b[^>]*>(.*?)</\1>', default)
+  from dbo.RegexMatches('The HTML is one two ', '<([A-Z][A-Z0-9]*)\b[^>]*>(.*?)</\1>')
 )
 
 select StatusMessage = case when count(*) = 0 then 'Success' else 'Failure' end
@@ -55,7 +55,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexMatches(null, '<([A-Z][A-Z0-9]*)\b[^>]*>(.*?)</\1>', default)
+  from dbo.RegexMatches(null, '<([A-Z][A-Z0-9]*)\b[^>]*>(.*?)</\1>')
 )
 
 select StatusMessage = case when count(*) = 0 then 'Success' else 'Failure' end
@@ -74,7 +74,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexMatches('The HTML is <TAG>one</TAG><TAG>two</TAG>', null, default)
+  from dbo.RegexMatches('The HTML is <TAG>one</TAG><TAG>two</TAG>', null)
 )
 
 select StatusMessage = case when count(*) = 0 then 'Success' else 'Failure' end
@@ -88,7 +88,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexMatches(null, null, default)
+  from dbo.RegexMatches(null, null)
 )
 
 select StatusMessage = case when count(*) = 0 then 'Success' else 'Failure' end
@@ -102,7 +102,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexMatches('The HTML is <TAG>one</TAG><TAG>two</TAG>', '$^', default)
+  from dbo.RegexMatches('The HTML is <TAG>one</TAG><TAG>two</TAG>', '$^')
 )
 
 select StatusMessage = case when count(*) = 0 then 'Success' else 'Failure' end
@@ -117,7 +117,7 @@ go
 (
   select Position
 	    ,Match
-  from dbo.RegexMatches(123456, '\d', default)
+  from dbo.RegexMatches(123456, '\d')
 )
 
 select StatusMessage = case when Match in (1,2,3,4,5,6) then 'Success' else 'Failure' end

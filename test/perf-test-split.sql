@@ -28,7 +28,7 @@ SELECT
     ,SplitCount = count(*)
 into #results
 FROM gen g
-CROSS APPLY dbo.RegexSplit(g.InputString, 's', default) as s --split on the 's' character
+CROSS APPLY dbo.RegexSplit(g.InputString, 's') as s --split on the 's' character
 GROUP BY g.n
 
 set @EndTime = getdate();
@@ -66,7 +66,7 @@ SELECT
     ,SplitCount = count(*)
 into #results
 FROM gen g
-CROSS APPLY dbo.RegexSplit(g.InputString, 's\W|s\w{10}', default) as s --split on the 's' character
+CROSS APPLY dbo.RegexSplit(g.InputString, 's\W|s\w{10}') as s --split on the 's' character
 GROUP BY g.n
 
 set @EndTime = getdate();
@@ -86,7 +86,7 @@ go 10
 SELECT n = ROW_NUMBER() OVER (ORDER BY x.[object_id])
     --,x.name
     --,y.name
-    ,MatchedName = dbo.RegexMatch(x.name + y.name, '\w{4}', default)
+    ,MatchedName = dbo.RegexMatch(x.name + y.name,'\w{4}')
 
 FROM x CROSS JOIN x AS y ORDER BY n;
 */

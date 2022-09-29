@@ -16,5 +16,5 @@ Let's look at a few examples, inspired by a handy [Regular Expressions tutorial]
 ```
 declare @regex_pattern varchar(max) = '[_]*([a-z0-9]+(\.|_*)?)+@(?<domain>([a-z][a-z0-9-]+(\.|-*\.))+[a-z]{2,6})'
 
-select dbo.RegexGroupMatch('My email address is fakeemail@hotmail.com', @regex_pattern, 'domain', default)
+select dbo.RegexGroupMatch('My email address is fakeemail@hotmail.com', @regex_pattern, 'domain')
 ```

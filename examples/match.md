@@ -19,9 +19,9 @@ Let's pull an IPv4 address out of a string.
 ```
 declare @regex_pattern varchar(max) = '\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b'
 
-select dbo.RegexMatch('10.1.1.1', @regex_pattern, default)
+select dbo.RegexMatch('10.1.1.1', @regex_pattern)
 
-select dbo.RegexMatch('The IP address detected was 10.1.1.1 at 10:30pm', @regex_pattern, default)
+select dbo.RegexMatch('The IP address detected was 10.1.1.1 at 10:30pm', @regex_pattern)
 ```
 
 Note: this simple example will match some non-valid IP addresses as well (e.g. 999.999.999.999). You can make a more exact regular expression using a more complicated pattern, such as:
@@ -39,5 +39,5 @@ Let's pull out a floating-point number.
 ```
 declare @regex_pattern varchar(max) = '[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?'
 
-select dbo.RegexMatch('Avogrado''s number is 6.0221409e+23', @regex_pattern, default)
+select dbo.RegexMatch('Avogrado''s number is 6.0221409e+23', @regex_pattern)
 ```

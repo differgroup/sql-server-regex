@@ -18,7 +18,7 @@ set @StartTime = getdate();
   SELECT TOP (1000) [object_id], name from sys.all_objects
 )
 SELECT n = ROW_NUMBER() OVER (ORDER BY x.[object_id])
-	,MatchedName = dbo.RegexMatch(x.name + y.name, '\w{4}', default)
+	,MatchedName = dbo.RegexMatch(x.name + y.name,'\w{4}')
 into #results
 FROM x CROSS JOIN x AS y ORDER BY n;
 
@@ -47,7 +47,7 @@ set @StartTime = getdate();
   SELECT TOP (1000) [object_id], name from sys.all_objects
 )
 SELECT n = ROW_NUMBER() OVER (ORDER BY x.[object_id])
-	,MatchedName = dbo.RegexMatch(x.name + y.name, '(\w*)\1', default)
+	,MatchedName = dbo.RegexMatch(x.name + y.name,'(\w*)\1')
 into #results
 FROM x CROSS JOIN x AS y ORDER BY n;
 
@@ -78,7 +78,7 @@ set @StartTime = getdate();
   SELECT TOP (1000) [object_id], name from sys.all_objects
 )
 SELECT n = ROW_NUMBER() OVER (ORDER BY x.[object_id])
-	,MatchedName = isnull(dbo.RegexMatch(x.name + y.name, null, default), x.name + y.name)
+	,MatchedName = isnull(dbo.RegexMatch(x.name + y.name,null),x.name + y.name)
 into #results
 FROM x CROSS JOIN x AS y ORDER BY n;
 

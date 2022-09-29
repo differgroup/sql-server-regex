@@ -20,5 +20,5 @@ Let's grab HTML tags out of text.
 declare @regex_pattern varchar(max) = '<([A-Z][A-Z0-9]*)\b[^>]*>(.*?)</\1>'
 
 select *
-from dbo.RegexMatches('The HTML is <TAG>one</TAG><TAG>two</TAG>', @regex_pattern, default)
+from dbo.RegexMatches('The HTML is <TAG>one</TAG><TAG>two</TAG>', @regex_pattern)
 ```
