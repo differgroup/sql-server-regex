@@ -17,9 +17,24 @@ RETURNS nvarchar(max)
 AS EXTERNAL NAME [RegexAssembly].[UDF].[Match]
 go
 
+CREATE FUNCTION dbo.RegexMatch (@input nvarchar(max), @pattern nvarchar(max), @flags int = 0)
+RETURNS nvarchar(max)
+AS EXTERNAL NAME [RegexAssembly].[UDF].[Match]
+go
+
+CREATE FUNCTION dbo.RegexGroupMatch (@input nvarchar(max), @pattern nvarchar(max), @group nvarchar(max))
+RETURNS nvarchar(max)
+AS EXTERNAL NAME [RegexAssembly].[UDF].[GroupMatch]
+go
+
 CREATE FUNCTION dbo.RegexGroupMatch (@input nvarchar(max), @pattern nvarchar(max), @group nvarchar(max), @flags int = 0)
 RETURNS nvarchar(max)
 AS EXTERNAL NAME [RegexAssembly].[UDF].[GroupMatch]
+go
+
+CREATE FUNCTION dbo.RegexReplace (@input nvarchar(max), @pattern nvarchar(max), @replacement nvarchar(max))
+RETURNS nvarchar(max)
+AS EXTERNAL NAME [RegexAssembly].[UDF].[Replace]
 go
 
 CREATE FUNCTION dbo.RegexReplace (@input nvarchar(max), @pattern nvarchar(max), @replacement nvarchar(max), @flags int = 0)
